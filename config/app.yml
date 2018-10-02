@@ -1,0 +1,33 @@
+default:
+  server:
+    port: 6003
+  serviceEndpoints:
+    weather:
+      jsonPath: "$.hourly.data"
+      request:
+        url: "https://api.darksky.net/forecast/somekey"
+        type: "http"
+    bank:
+      jsonPath: "$.Balance"
+      request:
+        url: "https://mybank"
+        headers:
+          Authorization: "Bearer 123"
+        type: "http"
+    dates:
+      jsonPath: "$.items[0]"
+      request:
+        url: "https://www.googleapis.com/calendar/v3/calendars/"
+        type: "gauth"
+        cals:
+          - "en.uk#holiday@group.v.calendar.google.com"
+        auth:
+          email: "myemail"
+          key: "MYKEY"
+  aggregation:
+    default:
+      path: '/personal'
+      services:
+        - "bank"
+        - "weather"
+        - "dates"
