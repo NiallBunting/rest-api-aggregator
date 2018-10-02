@@ -1,0 +1,35 @@
+{
+  "name": "rest-api-aggregator",
+  "version": "0.0.1",
+  "description": "Aggregate REST requests to create a composite response.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiallBunting/rest-api-aggregator.git"
+  },
+  "keywords": [
+    "REST",
+    "aggregate",
+    "composite",
+    "response"
+  ],
+  "author": "Niall Bunting",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NiallBunting/rest-api-aggregator/issues"
+  },
+  "homepage": "https://github.com/NiallBunting/rest-api-aggregator#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "google-auth-library": "^2.0.0",
+    "googleapis": "^34.0.0",
+    "jsonpath": "^1.0.0",
+    "konfig": "^0.2.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
