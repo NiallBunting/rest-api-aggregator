@@ -26,3 +26,7 @@ Clone the repo and then run the following:
 $ npm install
 $ npm start
 ```
+
+## Contributing
+
+Feel free. I'm very happy if someone wants to help to make this better/add plugins. If so add your name somewhere.
