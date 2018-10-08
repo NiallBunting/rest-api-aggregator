@@ -12,12 +12,45 @@ const app = express();
 
 let services = [];
 
+function getInsertVar(vari) {
+  console.log(vari);
+  let date = new Date();
+  switch (vari) {
+    case 'DAY':
+      return date.getUTCDate();
+    case 'YEAR':
+      return date.getUTCFullYear();
+    case 'MONTH':
+      return date.getUTCMonth();
+    case 'HOUR':
+      return date.getUTCHours();
+    case 'MIN':
+      return date.getUTCMinutes();
+    case 'TDAY':
+      return date.getUTCDate() + 1;
+    default:
+      return '';
+  }
+}
+
+function insertVars(url) {
+  let replacements = url.match(/\$\([A-Za-z]*\)/g)
+  if(replacements){
+    replacements.forEach((item) => {
+      let vari = item.match(/[a-zA-Z]+/)[0];
+      url = url.replace(item, getInsertVar(vari));
+    });
+  }
+  return url;
+}
+
 //This creates the objects that are called for each service
 for(let service in config.app.serviceEndpoints){
   let serviceData = config.app.serviceEndpoints[service];
 
   let module = require('./plugins/' + serviceData.request.type + '.js');
   module = new module();
+  serviceData.request['url'] = insertVars(serviceData.request.url);
   module.setup(serviceData.request);
 
   services.push({"name": service, "jsonpath": config.app.serviceEndpoints[service].jsonPath,"call": function() {return module.call();} }); 
