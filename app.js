@@ -69,7 +69,7 @@ routes.forEach(function(route) {
       methods.push(service.call()
         .then((data) => applyJsonPath(service.jsonpath, data))
         .then((json) => formatResponse(service, json))
-        .catch((err) => {console.log(err); return null;}));
+        .catch((err) => {console.log(err); return {"name": service.name, "resp": "ERROR"};}));
     });
 
     Promise.all(methods).then((values) => {
