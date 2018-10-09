@@ -12,22 +12,26 @@ const app = express();
 
 let services = [];
 
+function pad(num, size = 2) {
+    var s = "000000000" + num;
+    return s.substr(s.length-size);
+}
+
 function getInsertVar(vari) {
-  console.log(vari);
   let date = new Date();
   switch (vari) {
     case 'DAY':
-      return date.getUTCDate();
+      return pad(date.getUTCDate());
     case 'YEAR':
       return date.getUTCFullYear();
     case 'MONTH':
-      return date.getUTCMonth();
+      return pad(date.getUTCMonth() + 1);
     case 'HOUR':
-      return date.getUTCHours();
+      return pad(date.getUTCHours());
     case 'MIN':
-      return date.getUTCMinutes();
+      return pad(date.getUTCMinutes());
     case 'TDAY':
-      return date.getUTCDate() + 1;
+      return pad(new Date(date.getTime()+1000*60*60*24).getUTCDate());
     default:
       return '';
   }
