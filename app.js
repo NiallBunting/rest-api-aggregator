@@ -38,14 +38,20 @@ function getInsertVar(vari) {
 }
 
 function insertVars(url) {
-  let replacements = url.match(/\$\([A-Za-z]*\)/g)
-  if(replacements){
-    replacements.forEach((item) => {
-      let vari = item.match(/[a-zA-Z]+/)[0];
-      url = url.replace(item, getInsertVar(vari));
-    });
+
+  var myUrl = url;
+
+  return function (){
+    let insideUrl = myUrl;
+    let replacements = insideUrl.match(/\$\([A-Za-z]*\)/g)
+    if(replacements){
+      replacements.forEach((item) => {
+        let vari = item.match(/[a-zA-Z]+/)[0];
+        insideUrl = insideUrl.replace(item, getInsertVar(vari));
+      });
+    }
+    return insideUrl;
   }
-  return url;
 }
 
 //This creates the objects that are called for each service

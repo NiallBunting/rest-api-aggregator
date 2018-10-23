@@ -13,7 +13,7 @@ class HttpService {
   }
 
   call() {
-    return request({url: this.url, headers: this.headers}).then((data) => JSON.parse(data));
+    return request({url: this.url(), headers: this.headers}).then((data) => JSON.parse(data));
   }
 }
 

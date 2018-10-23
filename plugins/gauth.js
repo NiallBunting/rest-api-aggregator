@@ -56,7 +56,7 @@ class GAuth {
 
    return cals.reduce((obj, item) => {
     let calId = encodeURIComponent(item);
-    let url = this.url + calId +'/events?fields=items(description%2Cend%2Cstart%2Csummary)&timeMax=' + midnightTomoz + '&timeMin=' + dateNow;
+    let url = this.url() + calId +'/events?fields=items(description%2Cend%2Cstart%2Csummary)&timeMax=' + midnightTomoz + '&timeMin=' + dateNow;
      obj.push(url);
      return obj;
    }, []);
